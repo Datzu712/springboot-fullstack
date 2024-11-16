@@ -11,8 +11,12 @@ import java.util.List;
 public class ClientRepository implements IRepositoryMethods<Client> {
     private Connection connection;
 
-    public ClientRepository() throws SQLException {
-        this.connection = DatabaseManager.getConnection();
+    public ClientRepository() {
+        try {  
+            this.connection = DatabaseManager.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public Client findOneById(int id) {

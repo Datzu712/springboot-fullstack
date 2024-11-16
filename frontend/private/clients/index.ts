@@ -4,17 +4,27 @@ import DataTable from 'datatables.net-responsive-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-fixedheader-bs5';
 import { createQuestion } from '@components/modals';
+import $ from 'jquery';
+import { IClient } from '@interfaces/client';
 
-document.addEventListener('DOMContentLoaded', () => {
+async function fetchAllClients(): Promise<IClient[]> {
+    const response = await fetch('/api/clients');
+    const data = await response.json();
+
+    return data;
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     const dt = new DataTable('#clients-table', {
         responsive: true,
         fixedHeader: true,
+        data: await fetchAllClients(), // todo: move to ajax req
         columns: [
             {
                 title: 'Name',
                 data: null,
                 render: (data) => {
-                    return `<a href="/clients/${data.id}">${data.name}</a>`;
+                    return data.name;
                 },
             },
             {
@@ -28,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: 'Phone',
                 data: null,
                 render: (data) => {
-                    return `<a href="tel:${data.phone}">${data.phone}</a>`;
+                    return data.phone;
                 },
             },
             {
@@ -58,15 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             }
                             case 'deleteButton': {
                                 createQuestion({
-                                    text: `Esta seguro que desea eliminar el examen con número de boleta ${data.numero_boleta}?`,
-                                    title: 'Eliminar Examen',
+                                    text: `Esta seguro que desea eliminar el cliente ${data.name}?`,
+                                    title: 'Eliminar cliente',
                                     afterConfirm: () => {
-                                        // self.data = self.data.filter(
-                                        //     (item) => item.numero_boleta !== data.numero_boleta,
-                                        // );
-                                        // self.dt.rows().remove();
-                                        // self.dt.rows.add(self.data).draw();
-                                        // self._store.setItem(self.data, 86400);
+                                        fetch(`/api/clients/${data.id}`, {
+                                            method: 'DELETE',
+                                        }).then(() => {
+                                            const row = $(this).closest('tr');
+                                            row.addClass('fade-out hide');
+                                            setTimeout(() => {
+                                                dt.row(row).remove().draw();
+                                            }, 500);
+                                        });
                                     },
                                 });
                                 break;

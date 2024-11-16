@@ -20,12 +20,21 @@
         <link rel="stylesheet" href="/css/index.css">
     </head>
     <body class="d-flex flex-column bg-light">
-        <div id="loading-screen" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 d-flex justify-content-center align-items-center" style="z-index: 1055;">
-            <div class="text-center">
-                <div class="spinner-border text-primary" role="status">
-                    <span id="loading-screen-message" class="visually-hidden">Cargando...</span>
+        <div class="modal fade" tabindex="-1" id="confirmModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmModalTitle">Confirmación</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="confirmModalText"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="confirmModalButton">Sí</button>
+                        <button type="button" class="btn btn-primary" id="cancelModalButton" data-bs-dismiss="modal">No</button>
+                    </div>
                 </div>
-                <p class="mt-2">Cargando...</p>
             </div>
         </div>
 
