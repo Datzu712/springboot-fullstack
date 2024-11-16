@@ -9,5 +9,10 @@ public class DashboardController {
     public String get() {
         return "dashboard";
     }
+
+    @GetMapping("/clients")
+    public String getClients() {
+        return "clients";
+    }
 }
 

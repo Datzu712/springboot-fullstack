@@ -54,9 +54,9 @@ const config: webpack.Configuration = {
     resolve: {
         extensions: ['.ts', '.js'],
         alias: {
-            '@components': path.resolve(__dirname, SOURCE_FOLDER, '/frontend/components'),
-            '@interfaces': path.resolve(__dirname, SOURCE_FOLDER, '/frontend/interfaces'),
-            '@utils': path.resolve(__dirname, SOURCE_FOLDER, '/frontend/utils'),
+            '@components': path.resolve(__dirname, SOURCE_FOLDER, '/components'),
+            '@interfaces': path.resolve(__dirname, SOURCE_FOLDER, '/interfaces'),
+            '@utils': path.resolve(__dirname, SOURCE_FOLDER, '/utils'),
         },
     },
 };
