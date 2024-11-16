@@ -1,1 +1,1 @@
-console.log('main');
+import './sidebar';

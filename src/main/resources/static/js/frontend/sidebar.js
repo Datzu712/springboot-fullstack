@@ -777,17 +777,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./index.ts":
-/*!******************!*\
-  !*** ./index.ts ***!
-  \******************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sidebar */ \"./sidebar.ts\");\n\nconsole.log('Hello from index.ts');\n\n\n//# sourceURL=webpack:///./index.ts?");
-
-/***/ }),
-
 /***/ "./sidebar.ts":
 /*!********************!*\
   !*** ./sidebar.ts ***!
@@ -871,7 +860,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var boot
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./index.ts");
+/******/ 	var __webpack_exports__ = __webpack_require__("./sidebar.ts");
 /******/ 	
 /******/ })()
 ;

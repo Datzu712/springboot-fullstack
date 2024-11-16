@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./private/dashboard/index.ts":
-/*!************************************!*\
-  !*** ./private/dashboard/index.ts ***!
-  \************************************/
+/***/ "./private/public/main.ts":
+/*!********************************!*\
+  !*** ./private/public/main.ts ***!
+  \********************************/
 /***/ (() => {
 
-eval("\nconsole.log('Hello, world! from dashbord');\n\n\n//# sourceURL=webpack:///./private/dashboard/index.ts?");
+eval("\n\n\n//# sourceURL=webpack:///./private/public/main.ts?");
 
 /***/ })
 
@@ -27,7 +27,7 @@ eval("\nconsole.log('Hello, world! from dashbord');\n\n\n//# sourceURL=webpack:/
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./private/dashboard/index.ts"]();
+/******/ 	__webpack_modules__["./private/public/main.ts"]();
 /******/ 	
 /******/ })()
 ;
