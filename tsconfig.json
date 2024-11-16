@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "module": "ESNext",
+        "target": "es5",
+        "allowJs": true,
+        "typeRoots": [
+            "node_modules/@types",
+        ],
+        "outDir": "./dist",
+        "strict": true,
+        "removeComments": true,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "paths": {
+            "@interfaces/*": [
+                "./frontend/interfaces/*"
+            ],
+            "@components/*": [
+                "./frontend/components/*"
+            ],
+            "@utils/*": [
+                "./frontend/utils/*"
+            ],
+        }
+    },
+    "include": [
+        "./frontend/**/*.ts"
+    ],
+    "exclude": [
+        "./dist"
+    ],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        },
+    },
+}
