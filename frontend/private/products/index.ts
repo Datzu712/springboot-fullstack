@@ -7,48 +7,42 @@ import $ from 'jquery';
 import DataTable from 'datatables.net-responsive-bs5';
 
 import { createQuestion } from '@components/modals';
-import { IClient } from '@interfaces/client';
+import { IProduct } from '@interfaces/product';
 import { FormManager } from '@utils/formManager';
 import { showToast } from '@components/toast';
 
-async function fetchAllClients(): Promise<IClient[]> {
-    const response = await fetch('/api/clients');
+async function fetchAllProducts(): Promise<IProduct[]> {
+    const response = await fetch('/api/products');
     const data = await response.json();
 
     return data;
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const modalElement = document.getElementById('clientModal')!;
+    const modalElement = document.getElementById('productModal')!;
     const modal = new Modal(modalElement);
-    const form = new FormManager('#clientForm');
-    let editingClient: IClient | null = null;
+    const form = new FormManager('#productForm');
+    let editingProduct: IProduct | null = null;
 
-    const dt = new DataTable('#clients-table', {
+    const dt = new DataTable('#products-table', {
         responsive: true,
         fixedHeader: true,
-        data: await fetchAllClients(),
+        data: await fetchAllProducts(),
         columns: [
             {
-                title: 'Name',
-                data: null,
+                title: 'Nombre',
+                data: 'name',
+            },
+            {
+                title: 'Precio',
+                data: 'price',
                 render: (data) => {
-                    return data.name;
+                    return `$${data.toFixed(2)}`;
                 },
             },
             {
-                title: 'Email',
-                data: null,
-                render: (data) => {
-                    return `<a href="mailto:${data.email}">${data.email}</a>`;
-                },
-            },
-            {
-                title: 'Phone',
-                data: null,
-                render: (data) => {
-                    return data.phone;
-                },
+                title: 'Descripción',
+                data: 'description',
             },
             {
                 orderable: false,
@@ -59,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     div.innerHTML = `
                         <div class="btn-group">
                             <button class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-list"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l11 0" /><path d="M9 12l11 0" /><path d="M9 18l11 0" /><path d="M5 6l0 .01" /><path d="M5 12l0 .01" /><path d="M5 18l0 .01" /></svg>
+                                <i class="fas fa-list"></i>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><button id="editButton" class="dropdown-item">Edit</button></li>
@@ -73,17 +67,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                         switch (e.target.id) {
                             case 'editButton': {
+                                editingProduct = data;
                                 form.loadForm(data);
-                                editingClient = data;
                                 modal.show();
                                 break;
                             }
                             case 'deleteButton': {
                                 createQuestion({
-                                    text: `Are you sure you want to delete the client "${data.name}"?`,
-                                    title: 'Delete client',
+                                    text: `Are you sure you want to delete the product "${data.name}"?`,
+                                    title: 'Eliminar producto',
                                     afterConfirm: () => {
-                                        fetch(`/api/clients/${data.id}`, {
+                                        fetch(`/api/products/${data.id}`, {
                                             method: 'DELETE',
                                         }).then(() => {
                                             const row = $(this).closest('tr');
@@ -110,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 div.className = 'd-flex justify-content-end';
                 div.innerHTML = `
                         <button type="button" class="btn btn-rounded btn-primary mb-3">
-                            <i class="fas fa-plus"></i> New Client
+                            <i class="fas fa-plus"></i> Nuevo Producto
                         </button>
                 `;
                 div.onclick = () => {
@@ -123,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     modalElement.addEventListener('hidden.bs.modal', () => {
         form.clear();
-        editingClient = null;
+        editingProduct = null;
     });
     form.formElement.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -137,25 +131,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = form.toObj();
 
         try {
-            const res = await fetch('/api/clients' + (editingClient ? `/${editingClient.id}` : ''), {
-                method: editingClient ? 'PATCH' : 'POST',
+            const res = await fetch('/api/products' + (editingProduct ? `/${editingProduct.id}` : ''), {
+                method: editingProduct ? 'PATCH' : 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
             });
             if (!res.ok) {
-                throw new Error('Error saving client');
+                throw new Error(res.statusText);
             }
             dt.clear()
-                .rows.add(await fetchAllClients())
+                .rows.add(await fetchAllProducts())
                 .draw();
         } catch (error) {
             console.error(error);
 
             showToast({
                 title: 'Error',
-                message: 'An error occurred while saving the client. Please try again later.',
+                message: 'An error occurred while saving the product',
                 position: 'top-0 end-0',
                 icon: 'fa-solid fa-exclamation-triangle',
                 transparent: false,
