@@ -14,5 +14,10 @@ public class DashboardController {
     public String getClients() {
         return "clients";
     }
+
+    @GetMapping("/products")
+    public String getProducts() {
+        return "products";
+    }
 }
 
