@@ -20,6 +20,39 @@
         <link rel="stylesheet" href="/css/index.css">
     </head>
     <body class="d-flex flex-column bg-light">
+        <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="clientModalLabel"><i class="fas fa-user-plus me-2"></i>Agregar Cliente</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row g-3 needs-validation" id="clientForm" novalidate>
+                        <div class="mb-3">
+                            <label for="name" class="form-label"><i class="fas fa-user me-2"></i>Nombre</label>
+                            <input type="text" class="form-control" id="name" required minlength="2">
+                            <div class="invalid-feedback">El nombre es obligatorio y debe tener al menos 2 caracteres.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                            <div class="invalid-feedback">Por favor, introduce un email válido.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label"><i class="fas fa-phone me-2"></i>Teléfono</label>
+                            <input type="text" class="form-control" id="phone" required>
+                            <div class="invalid-feedback">El teléfono es obligatorio.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary" form="clientForm">Guardar Cambios</button>
+                </div>
+              </div>
+            </div>
+        </div>
         <div class="modal fade" tabindex="-1" id="confirmModal">
             <div class="modal-dialog">
                 <div class="modal-content">

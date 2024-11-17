@@ -1,11 +1,15 @@
 import '../main';
-
-import DataTable from 'datatables.net-responsive-bs5';
 import 'datatables.net-buttons-bs5';
 import 'datatables.net-fixedheader-bs5';
-import { createQuestion } from '@components/modals';
+
+import Modal from 'bootstrap/js/dist/modal';
 import $ from 'jquery';
+import DataTable from 'datatables.net-responsive-bs5';
+
+import { createQuestion } from '@components/modals';
 import { IClient } from '@interfaces/client';
+import { FormManager } from '@utils/formManager';
+import { showToast } from '@components/toast';
 
 async function fetchAllClients(): Promise<IClient[]> {
     const response = await fetch('/api/clients');
@@ -15,10 +19,14 @@ async function fetchAllClients(): Promise<IClient[]> {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+    const modalElement = document.getElementById('clientModal')!;
+    const modal = new Modal(modalElement);
+    const form = new FormManager('#clientForm');
+
     const dt = new DataTable('#clients-table', {
         responsive: true,
         fixedHeader: true,
-        data: await fetchAllClients(), // todo: move to ajax req
+        data: await fetchAllClients(),
         columns: [
             {
                 title: 'Name',
@@ -64,6 +72,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                         switch (e.target.id) {
                             case 'editButton': {
+                                form.loadForm(data);
+                                modal.show();
                                 break;
                             }
                             case 'deleteButton': {
@@ -91,5 +101,63 @@ document.addEventListener('DOMContentLoaded', async () => {
                 width: '1%',
             },
         ],
+        layout: {
+            // @ts-expect-error idk why it's not working
+            topStart: function () {
+                const div = document.createElement('div');
+                div.className = 'd-flex justify-content-end';
+                div.innerHTML = `
+                        <button type="button" class="btn btn-rounded btn-primary mb-3">
+                            <i class="fas fa-plus"></i> New Client
+                        </button>
+                `;
+                div.onclick = () => {
+                    modal.show();
+                };
+                return div;
+            },
+        },
+    });
+
+    modalElement.addEventListener('hidden.bs.modal', () => form.clear());
+    form.formElement.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (!form.formElement.checkValidity()) {
+            e.stopPropagation();
+
+            form.formElement.classList.add('was-validated');
+            return;
+        }
+        const data = form.toObj();
+
+        try {
+            const res = await fetch('/api/clients', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+            if (!res.ok) {
+                throw new Error('Error saving client');
+            }
+            dt.clear()
+                .rows.add(await fetchAllClients())
+                .draw();
+        } catch (error) {
+            console.error(error);
+
+            showToast({
+                title: 'Error',
+                message: 'An error occurred while saving the client. Please try again later.',
+                position: 'top-0 end-0',
+                icon: 'fa-solid fa-exclamation-triangle',
+                transparent: false,
+                delay: 10000,
+            });
+        } finally {
+            modal.hide();
+        }
     });
 });
