@@ -1,7 +1,7 @@
 {
-  "name": "my-webpack-project",
+  "name": "webpack-project",
   "version": "1.0.0",
-  "description": "My webpack project",
+  "description": "A webpack project",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Datzu712/flask-fullstack-template.git"
+    "url": "git+https://github.com/Datzu712/springboot-fullstack.git"
   },
   "keywords": [
     "flask",
@@ -35,9 +35,9 @@
   "author": "Datzu712",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Datzu712/flask-fullstack-template/issues"
+    "url": "https://github.com/Datzu712/springboot-fullstack/issues"
   },
-  "homepage": "https://github.com/Datzu712/flask-fullstack-template#readme",
+  "homepage": "https://github.com/Datzu712/springboot-fullstack#readme",
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@eslint/js": "^9.15.0",

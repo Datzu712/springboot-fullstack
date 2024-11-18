@@ -1,4 +1,4 @@
-# Spring Boot + Webpack Project / Caso de estudio 2 - U fidelitas
+# Spring Boot + Webpack Project / Caso de estudio 1 - U fidelitas
 
 This project is a full-stack application that uses Spring Boot for the backend and Webpack for the frontend.
 
