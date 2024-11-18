@@ -11,7 +11,7 @@
         
         <link rel="stylesheet" href="/css/index.css">
     </head>
-    <body class="d-flex flex-column bg-light">
+    <body class="d-flex flex-column">
         <div id="loading-screen" class="d-none position-fixed top-0 start-0 w-100 h-100 bg-white bg-opacity-75 d-flex justify-content-center align-items-center" style="z-index: 1055;">
             <div class="text-center">
                 <div class="spinner-border text-primary" role="status">
@@ -56,30 +56,25 @@
                             <i class="fas fa-user-friends fa-fw me-3"></i>
                             <span>Clients</span>
                         </a>
-                        <!-- Ventas -->
+                        <!-- Sales -->
                         <a 
                             href="/sales" 
                             class="list-group-item list-group-item-action py-2 ripple">
                             <i class="fas fa-money-bill-wave fa-fw me-3"></i>
-                            <span>Ventas</span>
+                            <span>Sales</span>
                         </a>
                     </div>
                 </div>
             </nav>
             <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top border border-light-subtle shadow" aria-label="Main Navigation">
-                <!-- Container wrapper -->
                 <div class="container-fluid">
-                    <!-- Toggle button -->
                     <button class="btn btn-light navbar-toggler" type="button" id="sidebarCollapse">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <!-- Brand -->
                     <a class="navbar-brand" href="#">
                         <strong>El ultimo Colon</strong><span class="text-muted">v1.0</span>
                     </a>
-                    <!-- Right links -->
                     <ul class="navbar-nav ms-auto d-flex flex-row">
-                        <!-- Icon -->
                         <li class="nav-item dropdown">
                             <a class="nav-link me-3 me-lg-0 d-flex align-items-center" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-user fa-2x"></i>
@@ -92,8 +87,20 @@
         </header>
         <main class="page" style="margin-top: 58px;">
             <div class="content-page container pt-4">
-                <h1>Bienvenido al dashboard - Caso de estudio 1</h1>
-                <p>Este es el dashboard de la aplicación.</p>
+                <h1>Welcome to the dashboard</h1>
+                <p>Caso de estudio 1</p>
+
+                <!-- <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+                    <button class="btn btn-primary py-2 dropdown-toggle" id="themeToggleButton" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme">
+                        <i id="themeIcon" class="fas fa-adjust"></i>
+                        <span class="visually-hidden" id="themeToggleText">Toggle theme</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="themeToggleText">
+                        <li><a class="dropdown-item" data-target="light"><i class="fas fa-sun me-2"></i>Light</a></li>
+                        <li><a class="dropdown-item" data-target="dark"><i class="fas fa-moon me-2"></i>Dark</a></li>
+                        <li><a class="dropdown-item" data-target="auto"> <i class="fas fa-adjust me-2"></i>Auto</a></li>
+                    </ul>
+                </div> -->
 
                 <div class="modal fade" tabindex="-1" id="confirmModal">
                     <div class="modal-dialog">

@@ -4,7 +4,7 @@ create table client
         constraint client_pk
             primary key autoincrement,
     name  VARCHAR not null,
-    email VARCHAR,
+    email VARCHAR not null,
     phone VARCHAR
 );
 
@@ -26,17 +26,17 @@ create unique index product_id_uindex
 
 create table sale
 (
-    id            INTEGER not null
+    id           INTEGER not null
         constraint sale_pk
             primary key autoincrement,
-    purchase_date DATE    not null,
-    product_id    INTEGER not null
+    purchaseDate DATE    not null,
+    product_id   INTEGER not null
         constraint sale_product_id_fk
             references product,
-    client_id     INTEGER not null
+    client_id    INTEGER not null
         constraint sale_client_id_fk
             references client,
-    amount        INTEGER not null
+    amount       INTEGER not null
 );
 
 create unique index sale_id_uindex

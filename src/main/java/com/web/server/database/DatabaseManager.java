@@ -39,7 +39,7 @@ public class DatabaseManager {
     
             stmt.executeUpdate("CREATE TABLE IF NOT EXISTS sale (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "purchase_date DATE NOT NULL," +
+                "purchaseDate DATE NOT NULL," +
                 "product_id INTEGER NOT NULL," +
                 "client_id INTEGER NOT NULL," +
                 "amount INTEGER NOT NULL," +

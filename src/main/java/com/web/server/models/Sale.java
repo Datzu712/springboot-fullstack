@@ -2,25 +2,28 @@ package com.web.server.models;
 
 import java.util.Date;
 
-public class Sale {
-    private int id;
-    private Date date;
+public class Sale extends BaseModel<Sale> {
+    private Date purchaseDate;
     private int productId;
     private int clientId;
     private int amount;
 
-    public int getAmount() {
-        return amount;
+    public Date getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public Sale setAmount(int amount) {
-        this.amount = amount;
-
+    public Sale setPurchaseDate(Date date) {
+        this.purchaseDate = date;
         return this;
     }
 
-    public Date getDate() {
-        return date;
+    public int getProductId() {
+        return productId;
+    }
+
+    public Sale setProductId(int productId) {
+        this.productId = productId;
+        return this;
     }
 
     public int getClientId() {
@@ -29,33 +32,15 @@ public class Sale {
 
     public Sale setClientId(int clientId) {
         this.clientId = clientId;
-
         return this;
     }
 
-    public int getProductId() {
-        return productId;
+    public int getAmount() {
+        return amount;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public Sale setId(int id) {
-        this.id = id;
-
-        return this;
-    }
-
-    public Sale setProductId(int productId) {
-        this.productId = productId;
-
-        return this;
-    }
-
-    public Sale setDate(Date date) {
-        this.date = date;
-
+    public Sale setAmount(int amount) {
+        this.amount = amount;
         return this;
     }
 }

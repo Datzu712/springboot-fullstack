@@ -24,5 +24,10 @@ public class DashboardController {
     public String getWorkers() {
         return "workers";
     }
+
+    @GetMapping("/sales")
+    public String getSales() {
+        return "sales";
+    }
 }
 
