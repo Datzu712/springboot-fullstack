@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -18,39 +19,35 @@
         <link rel="stylesheet" href="/css/index.css">
     </head>
     <body class="d-flex flex-column bg-light">
-        <div class="modal fade" id="clientModal" tabindex="-1" aria-labelledby="clientModalLabel" aria-hidden="true">
+        <div class="modal fade" id="workerModal" tabindex="-1" aria-labelledby="workerModalLabel" aria-hidden="true">
             <div class="modal-dialog ">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="clientModalLabel"><i class="fas fa-user-plus me-2"></i>New client</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="workerModalLabel"><i class="fas fa-user-plus me-2"></i>New Worker</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="row g-3 needs-validation" id="workerForm" novalidate>
+                            <div class="mb-3">
+                                <label for="name" class="form-label"><i class="fas fa-user me-2"></i>Name</label>
+                                <input type="text" class="form-control" id="name" required minlength="2">
+                                <div class="invalid-feedback">Worker name is required and must have at least 2 characters.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="role" class="form-label"><i class="fas fa-briefcase me-2"></i>Role</label>
+                                <input type="text" class="form-control" id="role" required>
+                                <div class="invalid-feedback">The role is required.</div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" class="btn btn-primary" form="workerForm">Guardar Cambios</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form class="row g-3 needs-validation" id="clientForm" novalidate>
-                        <div class="mb-3">
-                            <label for="name" class="form-label"><i class="fas fa-user me-2"></i>Name</label>
-                            <input type="text" class="form-control" id="name" required minlength="2">
-                            <div class="invalid-feedback">Client name is required and must have at least 2 characters.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label"><i class="fas fa-envelope me-2"></i>Email</label>
-                            <input type="email" class="form-control" id="email" required>
-                            <div class="invalid-feedback">The email is required.</div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="phone" class="form-label"><i class="fas fa-phone me-2"></i>Teléfono</label>
-                            <input type="text" class="form-control" id="phone" required>
-                            <div class="invalid-feedback">The phone number is required.</div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" form="clientForm">Save</button>
-                </div>
-              </div>
             </div>
         </div>
+
         <div class="modal fade" tabindex="-1" id="confirmModal">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -87,19 +84,19 @@
                             href="/products" 
                             class="list-group-item list-group-item-action py-2 ripple">
                             <i class="fas fa-box fa-fw me-3"></i>
-                            <span>Productos</span>
+                            <span>Products</span>
                         </a>
                         <!-- Workers -->
                         <a 
                             href="/workers" 
-                            class="list-group-item list-group-item-action py-2 ripple">
+                            class="list-group-item list-group-item-action py-2 ripple active">
                             <i class="fas fa-user-tie fa-fw me-3"></i>
                             <span>Workers</span>
                         </a>
                         <!-- Clients -->
                         <a 
                             href="/clients" 
-                            class="list-group-item list-group-item-action py-2 ripple active">
+                            class="list-group-item list-group-item-action py-2 ripple">
                             <i class="fas fa-user-friends fa-fw me-3"></i>
                             <span>Clients</span>
                         </a>
@@ -137,30 +134,29 @@
                 </div>
             </nav>
         </header>
+
         <main class="page" style="margin-top: 58px;">
             <div class="content-page container pt-4">
                 <nav class="breadcrumb d-flex justify-content-between align-items-center" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
-                        <li class="breadcrumb-item" aria-current="page"><a href="/">Dashboard</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">Clients</li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="/">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Productos</li>
                     </ol>
                 </nav>
-                
+
                 <section class="mb-4">
                     <div class="card">
                         <div class="card-header py-3 border" style="background-color: #f8f8f8;">
-                            <h5 class="mb-0 text-center"><strong>Clients of El Ultimo Colon</strong></h5>
+                            <h5 class="mb-0 text-center"><strong>Workers of El Ultimo Colon</strong></h5>
                         </div>
                         <div class="card-body border">
-                            <table class="table table-striped table-bordered table-hover" id="clients-table">
+                            <table class="table table-striped table-bordered table-hover" id="workers-table">
                             </table>
                         </div>
                     </div>
                 </section>
             </div>
         </main>
-
-        <script src="/js/clients/index.js"></script>
+        <script src="/js/worker/index.js"></script>
     </body>
 </html>
